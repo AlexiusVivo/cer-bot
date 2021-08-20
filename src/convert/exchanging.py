@@ -1,16 +1,5 @@
-import config
-import database_filler
-import db
-import requests
-import json as js
-
-
-# Making get-request for getting json with exchange rates for Euro
-def requesting():
-    response = requests.get(config.ENDPOINT, params=config.PAYLOAD_RATES)
-    json = js.loads(response.text)
-    conversion_dict = database_filler.cartesian_structure(json['rates'])
-    return conversion_dict
+import src.bot.config as config
+import src.db.db as db
 
 
 # Converting dict with amount and currency to dict with structure {currency: {final_currency1: amount of original

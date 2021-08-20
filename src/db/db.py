@@ -1,7 +1,7 @@
 import pymongo as pm
 import time
-import config
-import exchanging
+import src.bot.config as config
+import src.convert.exchanging as exchanging
 
 
 # Return collection
@@ -23,7 +23,7 @@ def find_document(collection, elements, multiple=False):
 
 # Updates rates document
 def replace_rates(collection):
-    rates = exchanging.requesting()
+    rates = exchanging.request.requesting()
     collection.delete_many({})
     return collection.insert_one(rates).inserted_id
 

@@ -1,7 +1,7 @@
 import telebot
 import config
-import exchanging
-import message_regex
+import src.convert.exchanging as exchanging
+import src.convert.message_regex as message_regex
 
 TOKEN = config.TOKEN
 bot = telebot.TeleBot(TOKEN)
