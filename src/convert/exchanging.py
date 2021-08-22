@@ -1,5 +1,5 @@
 import src.bot.config as config
-import src.db.db as db
+from src.db.db import get_rate
 
 
 # Converting dict with amount and currency to dict with structure {currency: {final_currency1: amount of original
@@ -8,7 +8,7 @@ def converter(amount_and_currency):
     converted_dict = {}
     for pare in amount_and_currency:
         converted_dict[pare[1]] = {}
-        for rate in list(db.get_rate(pare[1]).items()):
+        for rate in list(get_rate(pare[1]).items()):
             if rate[0] == pare[1]:
                 converted_dict[pare[1]][rate[0]] = round(pare[0], config.ROUND_ACCURACY)
             else:

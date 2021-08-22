@@ -19,5 +19,4 @@ def cartesian_structure(eur_dict):
             else:
                 conversion_dict[currency][currency_nested] = round(1 / eur_dict[currency] * eur_dict[currency_nested],
                                                                    config.ROUND_ACCURACY)
-    conversion_dict['timestamp'] = int(time.time())
     return conversion_dict
