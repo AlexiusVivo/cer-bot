@@ -6,8 +6,8 @@ import json as js
 import requests
 
 
-# Making get-request for getting json with exchange rates for Euro
 def requesting():
+    """ Making get-request for getting json with exchange rates for Euro"""
     response = requests.get(config.ENDPOINT, params=config.PAYLOAD_RATES)
     if response.status_code != 200:
         raise bot_exception.ApiException

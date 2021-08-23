@@ -22,7 +22,7 @@ def start_command(message):
 def echo_all(message):
     amount_and_currency = scan_text(message.text)
     reply_text = get_reply_text(amount_and_currency)
-    stats.create_user_record(amount_and_currency, message.from_user.username)
+    stats.update_user_stats(amount_and_currency, message.from_user.username)
     bot.reply_to(message, reply_text)
 
 

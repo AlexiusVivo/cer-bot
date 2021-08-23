@@ -1,10 +1,9 @@
 import src.bot.config as config
-import time
 
 
-# By giving dict with rates from Euro to others currencies returns a dict with cartesian product with end structure:
-# {final_currency: rate_to_original_currency, ...: ..., ...}
 def cartesian_structure(eur_dict):
+    """ By giving dict with rates from Euro to others currencies returns a dict with cartesian product with
+     end structure: {final_currency: rate_to_original_currency, ...: ..., ...}"""
     conversion_dict = {}
     for currency in config.CURRENCY_CODES:
         conversion_dict[currency] = {}

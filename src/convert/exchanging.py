@@ -2,9 +2,9 @@ import src.bot.config as config
 from src.db.db import get_rate
 
 
-# Converting dict with amount and currency to dict with structure {currency: {final_currency1: amount of original
-# currency in final, final_currency2: ..., ...}}
 def converter(amount_and_currency):
+    """ Converting dict with amount and currency to dict with structure {currency: {final_currency1: amount of original
+    currency in final, final_currency2: ..., ...}}"""
     converted_dict = {}
     for pare in amount_and_currency:
         converted_dict[pare[1]] = {}
@@ -16,8 +16,8 @@ def converter(amount_and_currency):
     return converted_dict
 
 
-# Creating block of text for one of captured currencies
 def currency_text_block(converted_currencies):
+    """ Creating block of text for one of captured currencies"""
     emoji_dict = {'EUR': u'\U0001F1EA\U0001F1FA',
                   'USD': u'\U0001F1FA\U0001F1F8',
                   'GBP': u'\U0001F1EC\U0001F1E7',
@@ -37,11 +37,10 @@ def currency_text_block(converted_currencies):
     return text_block
 
 
-# Creating text of message
 def get_reply_text(amount_and_currency):
+    """ Creating text of message"""
     reply_text = ''
     converted_dict = converter(amount_and_currency)
-    print(converted_dict)
     for converted_currencies in list(converted_dict.items()):
         reply_text += currency_text_block(converted_currencies)
     return reply_text
