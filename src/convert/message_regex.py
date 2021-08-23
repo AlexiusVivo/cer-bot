@@ -53,8 +53,8 @@ def currency_check(splited_string):
         'EUR': u'\u20AC|€|eur|EUR|Eur|евро|еуро|евра',
         'USD': r'usd|dollar|\$|доллар|даляр|бакс|бачей|вечнозел',
         'GBP': u'£|\u00A3|pound|фунт',
-        'RUB': u'₽|\u20BD|rub|рубл|руб|деревян',
-        'UAH': u'₴|\u20B4|гривн|грв|uah|hrivn',
+        'RUB': u'₽|\u20BD|rub|рубл|руб|деревян|^р$|^р\.$',
+        'UAH': u'₴|\u20B4|гривен|грн|uah|hrivn',
         'BYN': 'byn|byr|бел|зайч|зайц'
     }
     for index in range(len(splited_string)):
@@ -74,10 +74,12 @@ def currency_check(splited_string):
 def amount_check(currencies, splited_string):
     """Returns amount of original currency"""
     amount_and_currencies = []
-    pattern_digit_amount = r'\d+[,\.]?\d+?'
+    pattern_digit_amount = r'\d+[,\.]?\d*?'
     for currency in currencies:
         modifiers = get_modifiers(currency[0], len(splited_string))
         for modifier in list(modifiers.values()):
+            if currency[0] + modifier not in range(len(splited_string)):
+                continue
             substring = splited_string[currency[0] + modifier]
             result = re.search(pattern_digit_amount, substring)
             if result is None:

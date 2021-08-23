@@ -1,4 +1,4 @@
-import src.db.db as db
+from ..db import db
 
 
 def update_rates():
